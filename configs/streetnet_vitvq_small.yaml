@@ -38,7 +38,7 @@ dataset:
                 size: 256
 
         validation:
-            target: enhancing.dataloader.streetnet.MultiImagePaths
+            target: enhancing.dataloader.streetnet.RoadBase
             params:
                 paths: E:\Arch\东莞\道路\完成处理【学社】\图片数据\道路\img;E:\Arch\珠海\道路\完成处理【学社】\珠海\图片数据\道路\img
                 in_channels: 1
