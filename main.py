@@ -5,6 +5,7 @@
 # ------------------------------------------------------------------------------------
 
 import os
+os.environ['WANDB_MODE'] = 'offline'
 import sys
 import argparse
 from pathlib import Path

@@ -1,0 +1,45 @@
+model:
+    target: enhancing.modules.stage1.vitvqgan.ViTVQ
+    params:
+        image_key: image
+        image_size: 256
+        patch_size: 8
+        encoder:
+            dim: 512
+            depth: 8
+            heads: 8
+            mlp_dim: 2048
+        decoder:
+            dim: 512
+            depth: 8
+            heads: 8
+            mlp_dim: 2048
+        quantizer:
+            embed_dim: 32
+            n_embed: 8192
+        loss:
+            target: enhancing.losses.vqperceptual.VQLPIPSWithDiscriminator
+            params:
+                loglaplace_weight: 1.0
+                loggaussian_weight: 1.0
+                perceptual_weight: 0.001
+                adversarial_weight: 0.1
+
+dataset:
+    target: enhancing.dataloader.DataModuleFromConfig
+    params:
+        batch_size: 8
+        num_workers: 4
+        train:
+            target: enhancing.dataloader.streetnet.RoadBase
+            params:
+                paths: E:\Arch\广州\道路\广州市城市道路标注\图片数据\道路\img;E:\Arch\佛山\道路\佛山市城市道路完成【学社】\图片数据\道路\img
+                in_channels: 1
+                size: 256
+
+        validation:
+            target: enhancing.dataloader.streetnet.MultiImagePaths
+            params:
+                paths: E:\Arch\东莞\道路\完成处理【学社】\图片数据\道路\img;E:\Arch\珠海\道路\完成处理【学社】\珠海\图片数据\道路\img
+                in_channels: 1
+                size: 256
