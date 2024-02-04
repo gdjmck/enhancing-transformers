@@ -5,11 +5,13 @@ model:
         image_size: 256
         patch_size: 8
         encoder:
+            channels: 1
             dim: 512
             depth: 8
             heads: 8
             mlp_dim: 2048
         decoder:
+            channels: 1
             dim: 512
             depth: 8
             heads: 8
