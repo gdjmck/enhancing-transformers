@@ -3,6 +3,7 @@
 # Copyright (c) 2020 Patrick Esser and Robin Rombach and Björn Ommer. All Rights Reserved.
 # ------------------------------------------------------------------------------------
 
+import git
 import os
 import wandb
 import numpy as np
@@ -16,7 +17,15 @@ import torchvision
 import pytorch_lightning as pl
 from pytorch_lightning.utilities.distributed import rank_zero_only
 from pytorch_lightning.callbacks import Callback
-from .general import log_commitID
+
+def get_git_commidID():
+    repo = git.Repo(search_parent_directories=False)
+    return repo.head.object.hexsha
+
+def log_commitID(file):
+    # 保存当前git代码版本
+    with open(file, 'w') as f:
+        f.write(get_git_commidID())
 
 
 class SetupCallback(Callback):

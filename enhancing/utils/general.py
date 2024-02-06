@@ -17,16 +17,6 @@ from pytorch_lightning.callbacks import ModelCheckpoint, Callback
 from pytorch_lightning.loggers import WandbLogger
 
 from .callback import *
-import git
-
-def get_git_commidID():
-    repo = git.Repo(search_parent_directories=False)
-    return repo.head.object.hexsha
-
-def log_commitID(file):
-    # 保存当前git代码版本
-    with open(file, 'w') as f:
-        f.write(get_git_commidID())
 
 
 def set_seed(seed: int):
