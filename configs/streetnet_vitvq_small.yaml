@@ -7,24 +7,24 @@ model:
         encoder:
             channels: 1
             dim: 512
-            depth: 8
-            heads: 8
-            mlp_dim: 2048
+            depth: 4
+            heads: 4
+            mlp_dim: 512
         decoder:
             channels: 1
             dim: 512
-            depth: 8
-            heads: 8
-            mlp_dim: 2048
+            depth: 4
+            heads: 4
+            mlp_dim: 1024
         quantizer:
             embed_dim: 32
-            n_embed: 8192
+            n_embed: 2048
         loss:
             target: enhancing.losses.vqperceptual.VQLPIPSWithDiscriminator
             params:
                 loglaplace_weight: 1.0
                 loggaussian_weight: 1.0
-                perceptual_weight: 0.001
+                perceptual_weight: 0.0
                 adversarial_weight: 0.1
 
 dataset:
