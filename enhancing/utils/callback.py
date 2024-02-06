@@ -16,6 +16,7 @@ import torchvision
 import pytorch_lightning as pl
 from pytorch_lightning.utilities.distributed import rank_zero_only
 from pytorch_lightning.callbacks import Callback
+from .general import log_commitID
 
 
 class SetupCallback(Callback):
@@ -37,6 +38,10 @@ class SetupCallback(Callback):
 
             print("Model config")
             # print(self.config.pretty())
+
+            # log current git commitID
+            log_commitID(os.path.join(self.ckptdir, 'commitID'))
+
             
             
 class ImageLogger(Callback):
