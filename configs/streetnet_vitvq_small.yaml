@@ -26,6 +26,7 @@ model:
                 loggaussian_weight: 1.0
                 perceptual_weight: 0.0
                 adversarial_weight: 0.1
+                disc_loss: hinge
 
 dataset:
     target: enhancing.dataloader.DataModuleFromConfig
